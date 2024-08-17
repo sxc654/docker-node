@@ -13,15 +13,16 @@ RUN apk update \
 RUN apk update \
     && apk add --no-cache gcc g++ libgcc make rsync vim git curl autoconf openssl openssh-client bash ca-certificates ncurses coreutils python3 linux-headers grep util-linux binutils findutils
 
-RUN rm /bin/sh && ln -s /bin/bash /bin/sh
+    
+ENV NVM_DIR=/root/.nvm
 
-# # Install nvm with node and npm
-RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
-RUN echo 'export NVM_DIR="$HOME/.nvm"' > ~/.bashrc
-RUN echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"' >> ~/.bashrc
-RUN echo '[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"' >> ~/.bashrc
-RUN source ~/.bashrc
-
-RUN nvm install 18.14.0 \
+# Install nvm with node and npm
+RUN curl https://raw.githubusercontent.com/creationix/nvm/v0.39.1/install.sh | bash \
+    && echo 'export NVM_DIR="$HOME/.nvm"' >> ~/.bash_profile \
+    && echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"' >> ~/.bash_profile \
+    && echo '[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"' >> ~/.bash_profile \
+    && source $NVM_DIR/nvm.sh \
+    && nvm install 18.14.0 \
     && nvm install 17.14.0 \
-    && nvm install 14.14.0
+    && nvm install 14.14.0 \
+    && nvm use 18.14.0

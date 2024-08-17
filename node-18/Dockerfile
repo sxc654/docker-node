@@ -1,8 +1,8 @@
-FROM node:14-alpine3.12
+FROM node:18-alpine3.19
 
 #******************更换Alpine源为mirrors.ustc.edu.cn******************
-RUN echo http://mirrors.ustc.edu.cn/alpine/v3.12/main > /etc/apk/repositories \
-    && echo http://mirrors.ustc.edu.cn/alpine/v3.12/community >> /etc/apk/repositories
+RUN echo http://mirrors.ustc.edu.cn/alpine/v3.19/main > /etc/apk/repositories \
+    && echo http://mirrors.ustc.edu.cn/alpine/v3.19/community >> /etc/apk/repositories
 
 # localtime
 RUN apk update \
