@@ -15,11 +15,10 @@ RUN apk update \
 
 # Install nvm with node and npm
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
-
-RUN echo 'export NVM_DIR="$HOME/.nvm"' > ~/.bashrc \
-    && echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"' >> ~/.bashrc \
-    && echo '[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"' >> ~/.bashrc \
-    && source ~/.bashrc
+RUN echo 'export NVM_DIR="$HOME/.nvm"' > ~/.bashrc
+RUN echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"' >> ~/.bashrc
+RUN echo '[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"' >> ~/.bashrc
+RUN source ~/.bashrc
 
 RUN nvm install 18.14.0 \
     && nvm install 17.14.0 \
