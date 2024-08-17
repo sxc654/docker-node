@@ -13,7 +13,9 @@ RUN apk update \
 RUN apk update \
     && apk add --no-cache gcc g++ libgcc make rsync vim git curl autoconf openssl openssh-client bash ca-certificates ncurses coreutils python3 linux-headers grep util-linux binutils findutils
 
-# Install nvm with node and npm
+RUN rm /bin/sh && ln -s /bin/bash /bin/sh
+
+# # Install nvm with node and npm
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
 RUN echo 'export NVM_DIR="$HOME/.nvm"' > ~/.bashrc
 RUN echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"' >> ~/.bashrc
