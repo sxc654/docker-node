@@ -20,5 +20,5 @@ RUN apk update \
     && echo "Asia/Shanghai" > /etc/timezone
 
 # 设置加速器源为淘宝源并安装 pnpm
-RUN npm config set registry https://registry.npmmirror.com \ 
-    && npm install -g pnpm@12.0.0
+RUN npm config set registry https://registry.npmmirror.com \
+    && npm install -g pnpm@latest
