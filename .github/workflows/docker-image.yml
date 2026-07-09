@@ -31,8 +31,7 @@ jobs:
           file: ./node-22/Dockerfile # 显式指定 Dockerfile 的位置
           push: true
           tags: |
-            ${{ secrets.DOCKERHUB_USERNAME }}/docker-node:node-22
-            ${{ secrets.DOCKERHUB_USERNAME }}/docker-node:latest
+            ${{ secrets.DOCKERHUB_USERNAME }}/docker-node:22
           # 开启 GitHub Actions 的自带缓存，让后续的构建速度飞起来
           cache-from: type=gha
           cache-to: type=gha,mode=max

@@ -20,5 +20,5 @@ RUN apk update \
     && echo "Asia/Shanghai" > /etc/timezone
 
 # 安装 pnpm
-RUN npm install -g pnpm
+RUN npm install -g npm@12.0.0
 
