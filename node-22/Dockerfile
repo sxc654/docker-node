@@ -21,3 +21,4 @@ RUN apk update \
 
 # 安装 pnpm
 RUN npm install -g pnpm
+
