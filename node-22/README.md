@@ -1,3 +1,3 @@
 # docker-node
 
-node-LTS
+node-22 LTS
