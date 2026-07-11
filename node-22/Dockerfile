@@ -1,17 +1,12 @@
-# 基础镜像优化建议版本
-FROM node:22.23.1-alpine3.23
+FROM node:22.23.1-slim
 
-# 更换Alpine源为mirrors.ustc.edu.cn
-RUN echo http://mirrors.ustc.edu.cn/alpine/v3.23/main > /etc/apk/repositories \
-    && echo http://mirrors.ustc.edu.cn/alpine/v3.23/community >> /etc/apk/repositories
-
-# 安装必需的运行时依赖和构建工具
-RUN apk add --no-cache \
-       git g++ make autoconf python3 curl tzdata \
-       cairo-dev pango-dev jpeg-dev giflib-dev librsvg-dev \
+# Debian 系用 apt，不是 apk
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    git g++ make autoconf python3 curl \
+    libcairo2-dev libpango1.0-dev libjpeg-dev libgif-dev librsvg2-dev \
     && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
-    && echo "Asia/Shanghai" > /etc/timezone
+    && echo "Asia/Shanghai" > /etc/timezone \
+    && rm -rf /var/lib/apt/lists/*
 
-# 设置加速器源为淘宝源并安装 pnpm
 RUN npm config set registry https://registry.npmmirror.com \
     && npm install -g pnpm@latest
